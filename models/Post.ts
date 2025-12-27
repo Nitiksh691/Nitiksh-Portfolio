@@ -30,8 +30,8 @@ const BlogPostSchema: Schema = new Schema(
     { timestamps: true }
 );
 
-// Add custom index for quick searches if needed
-BlogPostSchema.index({ slug: 1 });
+// No need for separate index as unique: true already creates one
+// BlogPostSchema.index({ slug: 1 });
 
 const BlogPost: Model<IBlogPost> =
     mongoose.models.BlogPost || mongoose.model<IBlogPost>("BlogPost", BlogPostSchema);

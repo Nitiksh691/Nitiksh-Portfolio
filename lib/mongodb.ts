@@ -13,7 +13,7 @@ async function dbConnect() {
 
     // Pick the first available connection string from any common Mongo key
     const MONGODB_URI = process.env.MONGODB_URI ||
-        process.env.MONGODB_URI ||
+        process.env.MONGODB_URL ||
         process.env.MONGO_URL ||
         process.env.MONGO_URI ||
         "";

@@ -7,7 +7,11 @@ export async function GET() {
         return NextResponse.json(posts)
     } catch (error) {
         console.error("GET /api/posts error:", error)
-        return NextResponse.json({ error: "Failed to fetch posts" }, { status: 500 })
+        return NextResponse.json({
+            error: "Failed to fetch posts",
+            details: error instanceof Error ? error.message : "Unknown error",
+            stack: process.env.NODE_ENV === 'development' ? (error instanceof Error ? error.stack : undefined) : undefined
+        }, { status: 500 })
     }
 }
 
