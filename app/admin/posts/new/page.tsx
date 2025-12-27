@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { ArrowLeft, Save, Loader2, FileText, Layout } from "lucide-react"
+import { ArrowLeft, Save, Loader2, FileText, Layout, Plus } from "lucide-react"
 
 export default function NewPostPage() {
     const [loading, setLoading] = useState(false)
@@ -15,6 +15,7 @@ export default function NewPostPage() {
         date: new Date().toISOString().split("T")[0],
         featured: false,
     })
+    const [error, setError] = useState<string | null>(null)
 
     const router = useRouter()
 
@@ -40,9 +41,13 @@ export default function NewPostPage() {
             if (res.ok) {
                 router.push("/admin")
                 router.refresh()
+            } else {
+                const data = await res.json()
+                setError(data.details || data.error || "Failed to create post")
             }
         } catch (error) {
             console.error("Failed to create post:", error)
+            setError(error instanceof Error ? error.message : "An unexpected error occurred")
         } finally {
             setLoading(false)
         }
@@ -61,6 +66,13 @@ export default function NewPostPage() {
                         </h1>
                     </div>
                 </div>
+
+
+                {error && (
+                    <div className="p-4 bg-red-50 border border-red-100 text-red-600 rounded-2xl text-sm font-medium animate-shake dark:bg-red-900/20 dark:border-red-900/30 dark:text-red-400">
+                        {error}
+                    </div>
+                )}
 
                 <form onSubmit={handleSubmit} className="space-y-10">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
@@ -145,8 +157,8 @@ export default function NewPostPage() {
                     </div>
                 </form>
             </div>
-        </main>
+        </main >
     )
 }
 
-import { Plus } from "lucide-react"
+

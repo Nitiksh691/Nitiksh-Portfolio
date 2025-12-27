@@ -7,7 +7,7 @@ export async function GET(
 ) {
     try {
         const { slug } = await params
-        const post = getPostBySlug(slug)
+        const post = await getPostBySlug(slug)
 
         if (!post) {
             return NextResponse.json({ error: "Post not found" }, { status: 404 })
@@ -27,14 +27,14 @@ export async function PUT(
         const { slug } = await params
         const body = await request.json()
 
-        // Find post by slug first to get ID
-        const existingPost = getPostBySlug(slug)
+        // Find post by slug first to verify existence
+        const existingPost = await getPostBySlug(slug)
         if (!existingPost) {
             return NextResponse.json({ error: "Post not found" }, { status: 404 })
         }
 
-        // Update post by ID
-        const updatedPost = updatePost(existingPost.id, body)
+        // Update post by slug
+        const updatedPost = await updatePost(slug, body)
 
         if (!updatedPost) {
             return NextResponse.json({ error: "Failed to update post" }, { status: 500 })
@@ -53,13 +53,13 @@ export async function DELETE(
     try {
         const { slug } = await params
 
-        // Find post by slug first to get ID
-        const existingPost = getPostBySlug(slug)
+        // Find post by slug first to verify existence
+        const existingPost = await getPostBySlug(slug)
         if (!existingPost) {
             return NextResponse.json({ error: "Post not found" }, { status: 404 })
         }
 
-        const success = deletePost(existingPost.id)
+        const success = await deletePost(slug)
 
         if (!success) {
             return NextResponse.json({ error: "Failed to delete post" }, { status: 500 })

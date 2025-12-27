@@ -98,9 +98,9 @@ export default function BlogPostReader({ params }: { params: Promise<{ slug: str
                     </header>
 
                     <div className="prose prose-zinc prose-lg max-w-none prose-headings:text-zinc-900 prose-p:text-zinc-600 prose-p:leading-relaxed prose-a:text-zinc-900 prose-a:underline-offset-4 prose-strong:text-zinc-900 prose-code:text-zinc-900 prose-code:bg-zinc-50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-zinc-50 prose-pre:text-zinc-900 prose-blockquote:border-l-zinc-200 prose-blockquote:text-zinc-500 prose-img:rounded-3xl dark:prose-headings:text-zinc-50 dark:prose-p:text-zinc-400 dark:prose-a:text-zinc-50 dark:prose-strong:text-zinc-50 dark:prose-code:text-zinc-50 dark:prose-code:bg-zinc-800 dark:prose-pre:bg-zinc-800 dark:prose-pre:text-zinc-50 dark:prose-blockquote:border-l-zinc-700 dark:prose-blockquote:text-zinc-400">
-                        {post.content.split('\n').map((line, i) => (
+                        {post.content ? post.content.split('\n').map((line, i) => (
                             <p key={i} className="mb-6">{line}</p>
-                        ))}
+                        )) : <p>No content available for this post.</p>}
                     </div>
 
                     <footer className="pt-16 border-t border-zinc-100 mt-20 dark:border-zinc-800">
@@ -115,7 +115,7 @@ export default function BlogPostReader({ params }: { params: Promise<{ slug: str
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
                                 <div className="w-10 h-10 rounded-full bg-zinc-100 overflow-hidden dark:bg-zinc-800">
-                                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&auto=format&fit=crop" alt="Nitiksh" className="w-full h-full object-cover" />
+                                    <img src="/me.png" alt="Nitiksh" className="w-full h-full object-cover" />
                                 </div>
                                 <div>
                                     <p className="text-xs font-bold text-zinc-900 dark:text-zinc-50">Nitiksh</p>

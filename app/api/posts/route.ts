@@ -6,6 +6,7 @@ export async function GET() {
         const posts = await getAllPostsDB()
         return NextResponse.json(posts)
     } catch (error) {
+        console.error("GET /api/posts error:", error)
         return NextResponse.json({ error: "Failed to fetch posts" }, { status: 500 })
     }
 }
@@ -13,6 +14,7 @@ export async function GET() {
 export async function POST(request: Request) {
     try {
         const body = await request.json()
+        console.log("Creating post with data:", body)
 
         // Validate required fields
         if (!body.title || !body.content) {
@@ -37,9 +39,14 @@ export async function POST(request: Request) {
             featured: body.featured || false,
         })
 
+        console.log("Post created successfully:", newPost.slug)
         return NextResponse.json(newPost, { status: 201 })
     } catch (error) {
-        return NextResponse.json({ error: "Failed to create post" }, { status: 500 })
+        console.error("POST /api/posts error:", error)
+        return NextResponse.json(
+            { error: "Failed to create post", details: error instanceof Error ? error.message : "Unknown error" },
+            { status: 500 }
+        )
     }
 }
 
@@ -49,3 +56,4 @@ function calculateReadingTime(content: string): number {
     const wordCount = content.split(/\s+/).length
     return Math.ceil(wordCount / wordsPerMinute)
 }
+
