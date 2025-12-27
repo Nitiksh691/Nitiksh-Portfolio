@@ -1,0 +1,12 @@
+{
+    "buildCommand": "pnpm build",
+    "devCommand": "pnpm dev",
+    "installCommand": "pnpm install",
+    "framework": "nextjs",
+    "env": {
+        "MONGODB_URI": "@mongodb_uri",
+        "ADMIN_Q1_ANSWER": "@admin_q1_answer",
+        "ADMIN_Q2_ANSWER": "@admin_q2_answer",
+        "ADMIN_Q3_ANSWER": "@admin_q3_answer"
+    }
+}

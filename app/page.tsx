@@ -24,12 +24,12 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
 
   const contributions = [
-    {
-      title: "Google Summer of Code, SugarLabs",
-      subtitle: "Redesigned project storage of Music Blocks via GitHub",
-      description: "Worked on enhancing the storage layer of Music Blocks, improving performance and reliability.",
-      link: "https://github.com/Nitiksh691",
-    },
+    // {
+    //   title: "Google Summer of Code, SugarLabs",
+    //   subtitle: "Redesigned project storage of Music Blocks via GitHub",
+    //   description: "Worked on enhancing the storage layer of Music Blocks, improving performance and reliability.",
+    //   link: "https://github.com/Nitiksh691",
+    // },
   ]
 
   const projects = [
@@ -87,9 +87,9 @@ export default function Home() {
                   <span>•</span>
                   <span>20-something year old</span>
                   <div className="flex items-center gap-3 ml-2">
-                    <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Github className="w-4 h-4" /></a>
-                    <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Linkedin className="w-4 h-4" /></a>
-                    <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Twitter className="w-4 h-4" /></a>
+                    <a href="https://github.com/Nitiksh691" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Github className="w-4 h-4" /></a>
+                    {/* <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Linkedin className="w-4 h-4" /></a> */}
+                    <a href="https://x.com/NitikshDas" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Twitter className="w-4 h-4" /></a>
                   </div>
                 </div>
               </div>
