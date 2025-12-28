@@ -18,7 +18,6 @@ export async function GET() {
 export async function POST(request: Request) {
     try {
         const body = await request.json()
-        console.log("Creating post with data:", body)
 
         // Validate required fields
         if (!body.title || !body.content) {
@@ -41,9 +40,9 @@ export async function POST(request: Request) {
             tags: body.tags || [],
             readingTime: body.readingTime || calculateReadingTime(body.content),
             featured: body.featured || false,
+            images: body.images || [],
         })
 
-        console.log("Post created successfully:", newPost.slug)
         return NextResponse.json(newPost, { status: 201 })
     } catch (error) {
         console.error("POST /api/posts error:", error)

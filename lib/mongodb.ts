@@ -19,9 +19,6 @@ async function dbConnect() {
         "";
 
     if (!MONGODB_URI) {
-        console.error("❌ MONGODB CONNECTION ERROR: No URI found in environment variables.");
-        console.log("Found these Mongo-related keys in process.env:", mongoKeys);
-
         throw new Error("MONGODB_URI is not defined. IMPORTANT: If you just added it to .env, you MUST restart your terminal (pnpm dev) for Next.js to see it.");
     }
 
@@ -34,9 +31,7 @@ async function dbConnect() {
             bufferCommands: false,
         };
 
-        console.log("🔄 Attempting to connect to MongoDB...");
         cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-            console.log("✅ MongoDB connected successfully");
             return mongoose;
         }).catch(err => {
             console.error("❌ MongoDB connection failed:", err.message);

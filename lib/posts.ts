@@ -12,12 +12,21 @@ export interface BlogPost {
     readingTime: number;
     featured: boolean;
     views: number;
+    images: { url: string; size: string; caption?: string }[];
     createdAt?: string;
     updatedAt?: string;
 }
 
 // Helper to convert Mongoose document to plain object
 function mapPost(post: any): BlogPost {
+    const images = post.images && post.images.length > 0
+        ? post.images.map((img: any) => ({
+            url: img.url,
+            size: img.size,
+            caption: img.caption || ""
+        }))
+        : (post.imageUrl ? [{ url: post.imageUrl, size: post.imageSize || "medium", caption: "" }] : []);
+
     return {
         id: post._id.toString(),
         slug: post.slug,
@@ -29,6 +38,7 @@ function mapPost(post: any): BlogPost {
         readingTime: post.readingTime,
         featured: post.featured,
         views: post.views,
+        images: images,
         createdAt: post.createdAt?.toISOString(),
         updatedAt: post.updatedAt?.toISOString(),
     };
