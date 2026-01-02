@@ -18,7 +18,10 @@ export async function GET() {
 export async function POST(request: Request) {
     try {
         const body = await request.json()
+<<<<<<< HEAD
         console.log("Creating post with data:", body)
+=======
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
 
         // Validate required fields
         if (!body.title || !body.content) {
@@ -41,9 +44,15 @@ export async function POST(request: Request) {
             tags: body.tags || [],
             readingTime: body.readingTime || calculateReadingTime(body.content),
             featured: body.featured || false,
+<<<<<<< HEAD
         })
 
         console.log("Post created successfully:", newPost.slug)
+=======
+            images: body.images || [],
+        })
+
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
         return NextResponse.json(newPost, { status: 201 })
     } catch (error) {
         console.error("POST /api/posts error:", error)

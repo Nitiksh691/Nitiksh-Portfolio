@@ -3,7 +3,11 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+<<<<<<< HEAD
 import { Github, Linkedin, Twitter, ArrowUpRight, Calendar, Clock, Eye, Mail, X, Play, Pause, SkipForward, Music } from "lucide-react"
+=======
+import { Github, Linkedin, Twitter, ArrowUpRight, Calendar, Clock, Eye } from "lucide-react"
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
 import { ExperienceCard } from "@/components/ExperienceCard"
 import { ProjectCardMinimal } from "@/components/ProjectCardMinimal"
 import { ThemeToggle } from "@/components/ThemeToggle"
@@ -19,6 +23,7 @@ interface BlogPost {
   views: number
 }
 
+<<<<<<< HEAD
 const tracks = [
   { name: "Track 1", src: "/music/track1.mp3" },
   { name: "Track 2", src: "/music/track2.mp3" },
@@ -52,6 +57,11 @@ export default function Home() {
     "Tailwind CSS", "PostgreSQL", "Docker", "AWS", "Git", "JavaScript",
     "Express.js", "GraphQL", "Redis", "Linux", "Machine Learning", "Deep Learning"
   ]
+=======
+export default function Home() {
+  const [blogs, setBlogs] = useState<BlogPost[]>([])
+  const [loading, setLoading] = useState(true)
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
 
   const contributions = [
     // {
@@ -72,6 +82,7 @@ export default function Home() {
     },
   ]
 
+<<<<<<< HEAD
   // Typewriter effect
   useEffect(() => {
     let index = 0
@@ -122,6 +133,8 @@ export default function Home() {
     return () => observer.disconnect()
   }, [])
 
+=======
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
   useEffect(() => {
     async function fetchBlogs() {
       try {
@@ -143,6 +156,7 @@ export default function Home() {
     fetchBlogs()
   }, [])
 
+<<<<<<< HEAD
   // Music player effects - Fixed auto-play
   useEffect(() => {
     const audioElement = new Audio(tracks[currentTrack].src)
@@ -354,6 +368,43 @@ export default function Home() {
           </div>
 
           <div className="space-y-4 text-zinc-600 leading-relaxed max-w-2xl dark:text-zinc-400 text-sm sm:text-base">
+=======
+  return (
+    <main className="min-h-screen bg-[#fdfdfd] text-[#09090b] font-sans selection:bg-zinc-200 dark:bg-zinc-950 dark:text-zinc-50 transition-colors duration-300">
+      <div className="max-w-3xl mx-auto px-6 py-24 space-y-24">
+
+        {/* Header section */}
+        <section className="space-y-8 animate-fadeIn">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-6">
+              <div className="w-20 h-20 rounded-3xl border border-zinc-200 bg-white p-1 shadow-sm overflow-hidden dark:bg-zinc-900 dark:border-zinc-800">
+                <Image
+                  src="/me.png"
+                  alt="Profile"
+                  className="w-full h-full object-cover rounded-full"
+                  width={100}
+                  height={100}
+                />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Nitiksh</h1>
+                <div className="flex items-center gap-2 text-zinc-500 text-sm mt-1 dark:text-zinc-400">
+                  <span>Software Engineer</span>
+                  <span>•</span>
+                  <span>20-something year old</span>
+                  <div className="flex items-center gap-3 ml-2">
+                    <a href="https://github.com/Nitiksh691" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Github className="w-4 h-4" /></a>
+                    {/* <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Linkedin className="w-4 h-4" /></a> */}
+                    <a href="https://x.com/NitikshDas" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Twitter className="w-4 h-4" /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ThemeToggle />
+          </div>
+
+          <div className="space-y-4 text-zinc-600 leading-relaxed max-w-2xl dark:text-zinc-400">
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
             <p>
               I build things. From web apps and backends to Machine Learning and Deep Learning, I love exploring how systems work. My next deep dive is into the world of embedded systems and low-level programming.
             </p>
@@ -366,6 +417,7 @@ export default function Home() {
           </div>
         </section>
 
+<<<<<<< HEAD
         {/* Skills Section with Marquee */}
         <section 
           id="skills" 
@@ -400,6 +452,12 @@ export default function Home() {
         >
           <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Cool places I've contributed</h2>
           <div className="grid gap-4 sm:gap-4">
+=======
+        {/* Experience section */}
+        <section className="space-y-8">
+          <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Cool places I've contributed</h2>
+          <div className="grid gap-4">
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
             {contributions.length > 0 ? contributions.map((item, i) => (
               <ExperienceCard key={i} {...item} />
             )) : <p className="text-zinc-400 text-sm italic">Working on some open source stuff.</p>}
@@ -407,6 +465,7 @@ export default function Home() {
         </section>
 
         {/* Education section */}
+<<<<<<< HEAD
         <section 
           id="education"
           className={`space-y-6 sm:space-y-8 fade-in-section ${visibleSections.has('education') ? 'visible' : ''}`}
@@ -417,11 +476,24 @@ export default function Home() {
             <p className="text-sm text-zinc-500 font-medium dark:text-zinc-400">B.Tech, Civil | 2023 - 2027 | GPA: It's bit(0/1) private</p>
             <p className="text-sm text-zinc-500 mt-3 leading-relaxed dark:text-zinc-400">
               Learning and building things.
+=======
+        <section className="space-y-8">
+          <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Education</h2>
+          <div className="p-6 rounded-2xl border border-zinc-100 bg-white shadow-sm dark:bg-zinc-900 dark:border-zinc-800">
+            <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">Delhi Technological University</h3>
+            <p className="text-sm text-zinc-500 font-medium dark:text-zinc-400">B.Tech, Civil | 2023 - 2027 | GPA: It's bit(0/1) private</p>
+            <p className="text-sm text-zinc-500 mt-3 leading-relaxed dark:text-zinc-400">
+              Got introduced to CS, started building things, made great friends, president of my Lit Soc.
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
             </p>
           </div>
 
 
+<<<<<<< HEAD
           <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-zinc-100 bg-white shadow-sm dark:bg-zinc-900 dark:border-zinc-800">
+=======
+          <div className="p-6 rounded-2xl border border-zinc-100 bg-white shadow-sm dark:bg-zinc-900 dark:border-zinc-800">
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
             <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">Roots Country School</h3>
             <p className="text-sm text-zinc-500 font-medium dark:text-zinc-400">Class 10th-12th | 2022 - 2023 | 10th-75%, 12th-75%  </p>
             <p className="text-sm text-zinc-500 mt-3 leading-relaxed dark:text-zinc-400">
@@ -430,7 +502,11 @@ export default function Home() {
           </div>
 
 
+<<<<<<< HEAD
           <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-zinc-100 bg-white shadow-sm dark:bg-zinc-900 dark:border-zinc-800">
+=======
+          <div className="p-6 rounded-2xl border border-zinc-100 bg-white shadow-sm dark:bg-zinc-900 dark:border-zinc-800">
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
             <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">DL DAV Public School</h3>
             <p className="text-sm text-zinc-500 font-medium dark:text-zinc-400">class LkG-9th | 2008 - 2021/22</p>
             <p className="text-sm text-zinc-500 mt-3 leading-relaxed dark:text-zinc-400">
@@ -441,18 +517,25 @@ export default function Home() {
         </section>
 
         {/* Projects section */}
+<<<<<<< HEAD
         <section 
           id="projects" 
           className={`space-y-6 sm:space-y-8 fade-in-section ${visibleSections.has('projects') ? 'visible' : ''}`}
         >
           <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Stuff I built</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+=======
+        <section className="space-y-8">
+          <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Stuff I built</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
             {projects.length > 0 ? projects.map((project, i) => (
               <ProjectCardMinimal key={i} {...project} />
             )) : <p className="text-zinc-400 text-sm italic">No projects found.</p>}
           </div>
         </section>
 
+<<<<<<< HEAD
         {/* Contact section */}
         <section 
           id="contact"
@@ -493,6 +576,10 @@ export default function Home() {
           id="blogs" 
           className={`space-y-8 sm:space-y-10 pb-16 sm:pb-24 border-t border-zinc-100 pt-8 sm:pt-12 dark:border-zinc-800 fade-in-section ${visibleSections.has('blogs') ? 'visible' : ''}`}
         >
+=======
+        {/* Writing section */}
+        <section className="space-y-10 pb-24 border-t border-zinc-100 pt-20 dark:border-zinc-800">
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Writing</h2>
             <Link href="/blog" className="text-sm font-medium text-zinc-400 hover:text-zinc-900 transition-colors flex items-center gap-1.5 dark:hover:text-white">

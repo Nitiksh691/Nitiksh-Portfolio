@@ -3,7 +3,11 @@
 import React, { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+<<<<<<< HEAD
 import { ArrowLeft, Save, Loader2, FileText, Layout, Trash2 } from "lucide-react"
+=======
+import { ArrowLeft, Save, Loader2, FileText, Layout, Trash2, Plus } from "lucide-react"
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
 
 interface BlogPost {
     slug: string
@@ -13,6 +17,10 @@ interface BlogPost {
     date: string
     tags: string[]
     featured: boolean
+<<<<<<< HEAD
+=======
+    images: { url: string; size: string; caption?: string }[]
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
 }
 
 export default function EditPostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -32,6 +40,10 @@ export default function EditPostPage({ params }: { params: Promise<{ slug: strin
                     setFormData({
                         ...data,
                         tags: data.tags.join(", "),
+<<<<<<< HEAD
+=======
+                        images: data.images || []
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
                     })
                 }
             } catch (error) {
@@ -43,6 +55,31 @@ export default function EditPostPage({ params }: { params: Promise<{ slug: strin
         fetchPost()
     }, [currentSlug])
 
+<<<<<<< HEAD
+=======
+    const addImage = () => {
+        if (!formData) return
+        setFormData({
+            ...formData,
+            images: [...formData.images, { url: "", size: "medium" }]
+        })
+    }
+
+    const removeImage = (index: number) => {
+        if (!formData) return
+        const newImages = [...formData.images]
+        newImages.splice(index, 1)
+        setFormData({ ...formData, images: newImages })
+    }
+
+    const updateImage = (index: number, field: "url" | "size" | "caption", value: string) => {
+        if (!formData) return
+        const newImages = [...formData.images]
+        newImages[index] = { ...newImages[index], [field]: value }
+        setFormData({ ...formData, images: newImages })
+    }
+
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         if (!formData) return
@@ -124,7 +161,84 @@ export default function EditPostPage({ params }: { params: Promise<{ slug: strin
 
                         <div className="space-y-8">
                             <div className="p-6 bg-white border border-zinc-100 rounded-3xl shadow-sm space-y-6">
+<<<<<<< HEAD
                                 <div className="space-y-2">
+=======
+                                <div className="space-y-4">
+                                    <div className="flex items-center justify-between">
+                                        <label className="text-[10px] font-mono uppercase tracking-widest text-zinc-400">Post Images</label>
+                                        <button
+                                            type="button"
+                                            onClick={addImage}
+                                            className="p-1 hover:bg-zinc-100 rounded-md transition-colors text-zinc-400 hover:text-zinc-900"
+                                        >
+                                            <Plus className="w-4 h-4" />
+                                        </button>
+                                    </div>
+
+                                    <div className="space-y-6">
+                                        {formData.images.map((img, index) => (
+                                            <div key={index} className="p-4 bg-zinc-50/50 rounded-2xl border border-zinc-100 space-y-3 relative group">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => removeImage(index)}
+                                                    className="absolute -top-2 -right-2 p-1 bg-white border border-zinc-100 rounded-full text-zinc-400 hover:text-red-500 shadow-sm opacity-0 group-hover:opacity-100 transition-all"
+                                                >
+                                                    <Trash2 className="w-3 h-3" />
+                                                </button>
+
+                                                <div className="space-y-1">
+                                                    <label className="text-[9px] font-mono uppercase text-zinc-400">Caption / Heading</label>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Add a heading or caption..."
+                                                        className="w-full px-3 py-2 rounded-lg border border-zinc-100 bg-white text-[11px] focus:outline-none transition-all"
+                                                        value={img.caption || ""}
+                                                        onChange={(e) => updateImage(index, "caption", e.target.value)}
+                                                    />
+                                                </div>
+
+                                                <div className="space-y-1">
+                                                    <label className="text-[9px] font-mono uppercase text-zinc-400">Image URL</label>
+                                                    <input
+                                                        type="url"
+                                                        placeholder="https://..."
+                                                        className="w-full px-3 py-2 rounded-lg border border-zinc-100 bg-white text-[11px] focus:outline-none transition-all"
+                                                        value={img.url}
+                                                        onChange={(e) => updateImage(index, "url", e.target.value)}
+                                                    />
+                                                </div>
+
+                                                <div className="space-y-1">
+                                                    <label className="text-[9px] font-mono uppercase text-zinc-400">Display Size</label>
+                                                    <select
+                                                        className="w-full px-3 py-2 rounded-lg border border-zinc-100 bg-white text-[11px] focus:outline-none transition-all"
+                                                        value={img.size}
+                                                        onChange={(e) => updateImage(index, "size", e.target.value)}
+                                                    >
+                                                        <option value="small">Small</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="large">Large</option>
+                                                        <option value="full">Full Width</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        ))}
+
+                                        {formData.images.length === 0 && (
+                                            <button
+                                                type="button"
+                                                onClick={addImage}
+                                                className="w-full py-4 border-2 border-dashed border-zinc-100 rounded-2xl text-[10px] font-mono uppercase tracking-widest text-zinc-400 hover:border-zinc-200 hover:text-zinc-500 transition-all"
+                                            >
+                                                + Add First Image
+                                            </button>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2 pt-4 border-t border-zinc-50">
+>>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
                                     <label className="text-[10px] font-mono uppercase tracking-widest text-zinc-400">Excerpt</label>
                                     <textarea
                                         rows={4}
