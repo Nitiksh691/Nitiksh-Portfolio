@@ -3,11 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-<<<<<<< HEAD
-import { ArrowLeft, Save, Loader2, FileText, Layout, Plus } from "lucide-react"
-=======
 import { ArrowLeft, Save, Loader2, FileText, Layout, Plus, Trash2 } from "lucide-react"
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
 
 export default function NewPostPage() {
     const [loading, setLoading] = useState(false)
@@ -18,17 +14,12 @@ export default function NewPostPage() {
         tags: "",
         date: new Date().toISOString().split("T")[0],
         featured: false,
-<<<<<<< HEAD
-=======
         images: [] as { url: string; size: string; caption?: string }[],
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
     })
     const [error, setError] = useState<string | null>(null)
 
     const router = useRouter()
 
-<<<<<<< HEAD
-=======
     const addImage = () => {
         setFormData({
             ...formData,
@@ -48,7 +39,6 @@ export default function NewPostPage() {
         setFormData({ ...formData, images: newImages })
     }
 
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
@@ -134,9 +124,6 @@ export default function NewPostPage() {
 
                         <div className="space-y-8">
                             <div className="p-6 bg-white border border-zinc-100 rounded-3xl shadow-sm space-y-6">
-<<<<<<< HEAD
-                                <div className="space-y-2">
-=======
                                 <div className="space-y-4">
                                     <div className="flex items-center justify-between">
                                         <label className="text-[10px] font-mono uppercase tracking-widest text-zinc-400">Post Images</label>
@@ -211,7 +198,6 @@ export default function NewPostPage() {
                                 </div>
 
                                 <div className="space-y-2 pt-4 border-t border-zinc-50">
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
                                     <label className="text-[10px] font-mono uppercase tracking-widest text-zinc-400">Excerpt</label>
                                     <textarea
                                         rows={4}
@@ -264,11 +250,7 @@ export default function NewPostPage() {
                     </div>
                 </form>
             </div>
-<<<<<<< HEAD
-        </main >
-=======
         </main>
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
     )
 }
 

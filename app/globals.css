@@ -100,25 +100,6 @@
   }
 }
 
-<<<<<<< HEAD
-=======
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 20px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
-
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
-.animate-fadeIn {
-  animation: fadeIn 0.4s ease-out forwards;
-}
-
-<<<<<<< HEAD
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -130,8 +111,12 @@
   }
 }
 
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
 .animate-fadeInUp {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .fade-in-section {
@@ -205,8 +190,4 @@
 
 .animate-blink {
   animation: blink 1s step-end infinite;
-=======
-.animate-fadeInUp {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
 }

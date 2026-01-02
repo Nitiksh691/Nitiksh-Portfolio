@@ -12,44 +12,37 @@ export interface BlogPost {
     readingTime: number;
     featured: boolean;
     views: number;
-<<<<<<< HEAD
-=======
     images: { url: string; size: string; caption?: string }[];
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
     createdAt?: string;
     updatedAt?: string;
 }
 
 // Helper to convert Mongoose document to plain object
 function mapPost(post: any): BlogPost {
-<<<<<<< HEAD
-=======
-    const images = post.images && post.images.length > 0
+    if (!post) return {} as BlogPost;
+
+    const images = post.images && Array.isArray(post.images) && post.images.length > 0
         ? post.images.map((img: any) => ({
-            url: img.url,
-            size: img.size,
+            url: img.url || "",
+            size: img.size || "medium",
             caption: img.caption || ""
         }))
         : (post.imageUrl ? [{ url: post.imageUrl, size: post.imageSize || "medium", caption: "" }] : []);
 
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
     return {
-        id: post._id.toString(),
-        slug: post.slug,
-        title: post.title,
-        excerpt: post.excerpt,
-        content: post.content,
-        date: post.date,
-        tags: post.tags,
-        readingTime: post.readingTime,
-        featured: post.featured,
-        views: post.views,
-<<<<<<< HEAD
-=======
+        id: post._id?.toString() || Math.random().toString(36).substr(2, 9),
+        slug: post.slug || "no-slug",
+        title: post.title || "Untitled",
+        excerpt: post.excerpt || "",
+        content: post.content || "",
+        date: post.date || new Date().toISOString().split("T")[0],
+        tags: post.tags || [],
+        readingTime: post.readingTime || 0,
+        featured: post.featured || false,
+        views: post.views || 0,
         images: images,
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
-        createdAt: post.createdAt?.toISOString(),
-        updatedAt: post.updatedAt?.toISOString(),
+        createdAt: post.createdAt?.toISOString() || new Date().toISOString(),
+        updatedAt: post.updatedAt?.toISOString() || new Date().toISOString(),
     };
 }
 

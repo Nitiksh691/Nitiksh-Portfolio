@@ -3,11 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-<<<<<<< HEAD
 import { Github, Linkedin, Twitter, ArrowUpRight, Calendar, Clock, Eye, Mail, X, Play, Pause, SkipForward, Music } from "lucide-react"
-=======
-import { Github, Linkedin, Twitter, ArrowUpRight, Calendar, Clock, Eye } from "lucide-react"
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
 import { ExperienceCard } from "@/components/ExperienceCard"
 import { ProjectCardMinimal } from "@/components/ProjectCardMinimal"
 import { ThemeToggle } from "@/components/ThemeToggle"
@@ -23,7 +19,6 @@ interface BlogPost {
   views: number
 }
 
-<<<<<<< HEAD
 const tracks = [
   { name: "Track 1", src: "/music/track1.mp3" },
   { name: "Track 2", src: "/music/track2.mp3" },
@@ -34,34 +29,29 @@ export default function Home() {
   const [blogs, setBlogs] = useState<BlogPost[]>([])
   const [loading, setLoading] = useState(true)
   const [imageModalOpen, setImageModalOpen] = useState(false)
-  
+
   // Music player state
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTrack, setCurrentTrack] = useState(0)
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null)
   const [showPlayer, setShowPlayer] = useState(true)
-  
+
   // Typewriter effect
   const [displayText, setDisplayText] = useState("")
   const fullText = "Software Engineer"
-  
+
   // Scroll progress
   const [scrollProgress, setScrollProgress] = useState(0)
-  
+
   // Visible sections for fade-in
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set())
-  
+
   // Skills for marquee
   const skills = [
     "React", "TypeScript", "Next.js", "Node.js", "Python", "MongoDB",
     "Tailwind CSS", "PostgreSQL", "Docker", "AWS", "Git", "JavaScript",
     "Express.js", "GraphQL", "Redis", "Linux", "Machine Learning", "Deep Learning"
   ]
-=======
-export default function Home() {
-  const [blogs, setBlogs] = useState<BlogPost[]>([])
-  const [loading, setLoading] = useState(true)
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
 
   const contributions = [
     // {
@@ -82,7 +72,6 @@ export default function Home() {
     },
   ]
 
-<<<<<<< HEAD
   // Typewriter effect
   useEffect(() => {
     let index = 0
@@ -114,7 +103,7 @@ export default function Home() {
   useEffect(() => {
     // Mark header as visible immediately
     setVisibleSections(prev => new Set(prev).add('header'))
-    
+
     const sections = document.querySelectorAll('section[id]')
     const observer = new IntersectionObserver(
       (entries) => {
@@ -133,8 +122,6 @@ export default function Home() {
     return () => observer.disconnect()
   }, [])
 
-=======
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
   useEffect(() => {
     async function fetchBlogs() {
       try {
@@ -156,18 +143,17 @@ export default function Home() {
     fetchBlogs()
   }, [])
 
-<<<<<<< HEAD
   // Music player effects - Fixed auto-play
   useEffect(() => {
     const audioElement = new Audio(tracks[currentTrack].src)
     audioElement.loop = false
     audioElement.volume = 0.5
-    
+
     const handleEnded = () => {
       const nextTrack = (currentTrack + 1) % tracks.length
       setCurrentTrack(nextTrack)
     }
-    
+
     const handleCanPlay = () => {
       // Try to play when audio is ready
       if (isPlaying) {
@@ -176,7 +162,7 @@ export default function Home() {
         })
       }
     }
-    
+
     audioElement.addEventListener('ended', handleEnded)
     audioElement.addEventListener('canplay', handleCanPlay)
 
@@ -209,7 +195,7 @@ export default function Home() {
   // Auto-play on first user interaction
   useEffect(() => {
     if (!audio) return
-    
+
     const handleFirstInteraction = () => {
       if (!isPlaying) {
         setIsPlaying(true)
@@ -218,7 +204,7 @@ export default function Home() {
       document.removeEventListener('touchstart', handleFirstInteraction)
       document.removeEventListener('keydown', handleFirstInteraction)
     }
-    
+
     // Try to play immediately (might work in some browsers)
     audio.play().then(() => {
       setIsPlaying(true)
@@ -228,7 +214,7 @@ export default function Home() {
       document.addEventListener('touchstart', handleFirstInteraction, { once: true })
       document.addEventListener('keydown', handleFirstInteraction, { once: true })
     })
-    
+
     return () => {
       document.removeEventListener('click', handleFirstInteraction)
       document.removeEventListener('touchstart', handleFirstInteraction)
@@ -250,17 +236,17 @@ export default function Home() {
     <main className="min-h-screen bg-[#fdfdfd] text-[#09090b] font-sans selection:bg-zinc-200 dark:bg-zinc-950 dark:text-zinc-50 transition-colors duration-300 relative overflow-hidden">
       {/* Animated Background */}
       <div className="fixed inset-0 -z-10 bg-gradient-to-br from-zinc-50 via-white to-zinc-100 dark:from-zinc-950 dark:via-zinc-900 dark:to-black animate-gradient opacity-50" />
-      
+
       {/* Scroll Progress Indicator */}
       <div className="fixed top-0 left-0 right-0 h-0.5 bg-zinc-200/50 dark:bg-zinc-800/50 z-50">
-        <div 
+        <div
           className="h-full bg-zinc-900 dark:bg-zinc-50 transition-all duration-150 ease-out"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
       {/* Image Modal - Smaller, in-place */}
       {imageModalOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
           onClick={() => setImageModalOpen(false)}
         >
@@ -336,7 +322,7 @@ export default function Home() {
         </div>
 
         {/* Header section */}
-        <section 
+        <section
           id="header"
           className={`space-y-6 sm:space-y-8 fade-in-section ${visibleSections.has('header') ? 'visible' : ''}`}
         >
@@ -355,56 +341,22 @@ export default function Home() {
             </button>
             <div className="flex-1 min-w-0">
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Nitiksh</h1>
-              <div className="text-zinc-500 text-sm mt-1.5 dark:text-zinc-400">
+              <div className="flex items-center gap-2 text-zinc-500 text-sm mt-1.5 dark:text-zinc-400">
                 <span className="font-medium">
                   {displayText}
                   {displayText.length < fullText.length && <span className="animate-blink">|</span>}
                 </span>
-              </div>
-              <div className="text-zinc-400 text-xs mt-1 dark:text-zinc-500 font-light">
-                20-something year old
+                <span>•</span>
+                <span className="font-light">20-something year old</span>
+                <div className="flex items-center gap-3 ml-2">
+                  <a href="https://github.com/Nitiksh691" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Github className="w-4 h-4" /></a>
+                  <a href="https://x.com/NitikshDas" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Twitter className="w-4 h-4" /></a>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="space-y-4 text-zinc-600 leading-relaxed max-w-2xl dark:text-zinc-400 text-sm sm:text-base">
-=======
-  return (
-    <main className="min-h-screen bg-[#fdfdfd] text-[#09090b] font-sans selection:bg-zinc-200 dark:bg-zinc-950 dark:text-zinc-50 transition-colors duration-300">
-      <div className="max-w-3xl mx-auto px-6 py-24 space-y-24">
-
-        {/* Header section */}
-        <section className="space-y-8 animate-fadeIn">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
-              <div className="w-20 h-20 rounded-3xl border border-zinc-200 bg-white p-1 shadow-sm overflow-hidden dark:bg-zinc-900 dark:border-zinc-800">
-                <Image
-                  src="/me.png"
-                  alt="Profile"
-                  className="w-full h-full object-cover rounded-full"
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Nitiksh</h1>
-                <div className="flex items-center gap-2 text-zinc-500 text-sm mt-1 dark:text-zinc-400">
-                  <span>Software Engineer</span>
-                  <span>•</span>
-                  <span>20-something year old</span>
-                  <div className="flex items-center gap-3 ml-2">
-                    <a href="https://github.com/Nitiksh691" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Github className="w-4 h-4" /></a>
-                    {/* <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Linkedin className="w-4 h-4" /></a> */}
-                    <a href="https://x.com/NitikshDas" className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-white"><Twitter className="w-4 h-4" /></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <ThemeToggle />
-          </div>
-
-          <div className="space-y-4 text-zinc-600 leading-relaxed max-w-2xl dark:text-zinc-400">
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
             <p>
               I build things. From web apps and backends to Machine Learning and Deep Learning, I love exploring how systems work. My next deep dive is into the world of embedded systems and low-level programming.
             </p>
@@ -417,21 +369,16 @@ export default function Home() {
           </div>
         </section>
 
-<<<<<<< HEAD
         {/* Skills Section with Marquee */}
-        <section 
-          id="skills" 
+        <section
+          id="skills"
           className={`space-y-6 sm:space-y-8 fade-in-section ${visibleSections.has('skills') ? 'visible' : ''}`}
         >
           <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Skills & Technologies</h2>
           <div className="relative overflow-hidden py-4 border-y border-zinc-200 dark:border-zinc-800 marquee-container group">
-            {/* Left fade gradient */}
             <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#fdfdfd] via-[#fdfdfd]/80 to-transparent dark:from-zinc-950 dark:via-zinc-950/80 z-10 pointer-events-none" />
-            
-            {/* Right fade gradient */}
             <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#fdfdfd] via-[#fdfdfd]/80 to-transparent dark:from-zinc-950 dark:via-zinc-950/80 z-10 pointer-events-none" />
-            
-            {/* Marquee row - moving left */}
+
             <div className="flex animate-marquee whitespace-nowrap gap-8 will-change-transform">
               {[...skills, ...skills].map((skill, index) => (
                 <span
@@ -446,18 +393,12 @@ export default function Home() {
         </section>
 
         {/* Experience section */}
-        <section 
+        <section
           id="experience"
           className={`space-y-6 sm:space-y-8 fade-in-section ${visibleSections.has('experience') ? 'visible' : ''}`}
         >
           <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Cool places I've contributed</h2>
-          <div className="grid gap-4 sm:gap-4">
-=======
-        {/* Experience section */}
-        <section className="space-y-8">
-          <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Cool places I've contributed</h2>
           <div className="grid gap-4">
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
             {contributions.length > 0 ? contributions.map((item, i) => (
               <ExperienceCard key={i} {...item} />
             )) : <p className="text-zinc-400 text-sm italic">Working on some open source stuff.</p>}
@@ -465,8 +406,7 @@ export default function Home() {
         </section>
 
         {/* Education section */}
-<<<<<<< HEAD
-        <section 
+        <section
           id="education"
           className={`space-y-6 sm:space-y-8 fade-in-section ${visibleSections.has('education') ? 'visible' : ''}`}
         >
@@ -475,25 +415,11 @@ export default function Home() {
             <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">Delhi Technological University</h3>
             <p className="text-sm text-zinc-500 font-medium dark:text-zinc-400">B.Tech, Civil | 2023 - 2027 | GPA: It's bit(0/1) private</p>
             <p className="text-sm text-zinc-500 mt-3 leading-relaxed dark:text-zinc-400">
-              Learning and building things.
-=======
-        <section className="space-y-8">
-          <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Education</h2>
-          <div className="p-6 rounded-2xl border border-zinc-100 bg-white shadow-sm dark:bg-zinc-900 dark:border-zinc-800">
-            <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">Delhi Technological University</h3>
-            <p className="text-sm text-zinc-500 font-medium dark:text-zinc-400">B.Tech, Civil | 2023 - 2027 | GPA: It's bit(0/1) private</p>
-            <p className="text-sm text-zinc-500 mt-3 leading-relaxed dark:text-zinc-400">
               Got introduced to CS, started building things, made great friends, president of my Lit Soc.
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
             </p>
           </div>
 
-
-<<<<<<< HEAD
           <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-zinc-100 bg-white shadow-sm dark:bg-zinc-900 dark:border-zinc-800">
-=======
-          <div className="p-6 rounded-2xl border border-zinc-100 bg-white shadow-sm dark:bg-zinc-900 dark:border-zinc-800">
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
             <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">Roots Country School</h3>
             <p className="text-sm text-zinc-500 font-medium dark:text-zinc-400">Class 10th-12th | 2022 - 2023 | 10th-75%, 12th-75%  </p>
             <p className="text-sm text-zinc-500 mt-3 leading-relaxed dark:text-zinc-400">
@@ -501,50 +427,37 @@ export default function Home() {
             </p>
           </div>
 
-
-<<<<<<< HEAD
           <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-zinc-100 bg-white shadow-sm dark:bg-zinc-900 dark:border-zinc-800">
-=======
-          <div className="p-6 rounded-2xl border border-zinc-100 bg-white shadow-sm dark:bg-zinc-900 dark:border-zinc-800">
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
             <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">DL DAV Public School</h3>
             <p className="text-sm text-zinc-500 font-medium dark:text-zinc-400">class LkG-9th | 2008 - 2021/22</p>
             <p className="text-sm text-zinc-500 mt-3 leading-relaxed dark:text-zinc-400">
               Unforegtable days
             </p>
           </div>
-
         </section>
 
         {/* Projects section */}
-<<<<<<< HEAD
-        <section 
-          id="projects" 
+        <section
+          id="projects"
           className={`space-y-6 sm:space-y-8 fade-in-section ${visibleSections.has('projects') ? 'visible' : ''}`}
         >
           <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Stuff I built</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-=======
-        <section className="space-y-8">
-          <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Stuff I built</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
             {projects.length > 0 ? projects.map((project, i) => (
               <ProjectCardMinimal key={i} {...project} />
             )) : <p className="text-zinc-400 text-sm italic">No projects found.</p>}
           </div>
         </section>
 
-<<<<<<< HEAD
         {/* Contact section */}
-        <section 
+        <section
           id="contact"
           className={`space-y-6 sm:space-y-8 border-t border-zinc-100 pt-12 sm:pt-16 dark:border-zinc-800 fade-in-section ${visibleSections.has('contact') ? 'visible' : ''}`}
         >
           <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Get in touch</h2>
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-            <a 
-              href="https://github.com/Nitiksh691" 
+            <a
+              href="https://github.com/Nitiksh691"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors px-4 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-900"
@@ -552,8 +465,8 @@ export default function Home() {
               <Github className="w-5 h-5" />
               <span className="text-sm font-medium">GitHub</span>
             </a>
-            <a 
-              href="https://x.com/NitikshDas" 
+            <a
+              href="https://x.com/NitikshDas"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors px-4 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-900"
@@ -561,8 +474,8 @@ export default function Home() {
               <Twitter className="w-5 h-5" />
               <span className="text-sm font-medium">Twitter</span>
             </a>
-            <a 
-              href="mailto:nitikshdas@gmail.com" 
+            <a
+              href="nitikshpal@gmail.com"
               className="flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors px-4 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-900"
             >
               <Mail className="w-5 h-5" />
@@ -572,14 +485,10 @@ export default function Home() {
         </section>
 
         {/* Writing section */}
-        <section 
-          id="blogs" 
+        <section
+          id="blogs"
           className={`space-y-8 sm:space-y-10 pb-16 sm:pb-24 border-t border-zinc-100 pt-8 sm:pt-12 dark:border-zinc-800 fade-in-section ${visibleSections.has('blogs') ? 'visible' : ''}`}
         >
-=======
-        {/* Writing section */}
-        <section className="space-y-10 pb-24 border-t border-zinc-100 pt-20 dark:border-zinc-800">
->>>>>>> 792e071dfa17ae2da1bcd55e399a5e927e4b62c2
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Writing</h2>
             <Link href="/blog" className="text-sm font-medium text-zinc-400 hover:text-zinc-900 transition-colors flex items-center gap-1.5 dark:hover:text-white">
