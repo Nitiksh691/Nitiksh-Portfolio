@@ -51,16 +51,6 @@ export default function AdminChallenge() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-4">
                         <div className="space-y-2">
-                            <label className="text-xs font-mono uppercase tracking-widest text-zinc-400">1. Favorite Language?</label>
-                            <input
-                                type="text"
-                                required
-                                className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900/5 transition-all"
-                                value={answers[0]}
-                                onChange={(e) => setAnswers([e.target.value, answers[1], answers[2]])}
-                            />
-                        </div>
-                        <div className="space-y-2">
                             <label className="text-xs font-mono uppercase tracking-widest text-zinc-400">2. Launch Year?</label>
                             <input
                                 type="text"
