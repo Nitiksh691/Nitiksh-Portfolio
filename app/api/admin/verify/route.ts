@@ -30,12 +30,11 @@ export async function POST(request: Request) {
         const { answers } = await request.json();
 
         // Validate answers against environment variables
-        const q1 = process.env.ADMIN_Q1_ANSWER || "typescript";
-        const q2 = process.env.ADMIN_Q2_ANSWER || "2025";
-        const q3 = process.env.ADMIN_Q3_ANSWER || "adarsh";
+        
+        const q1 = process.env.ADMIN_Q1_ANSWER || "2025";
+        const q2 = process.env.ADMIN_Q2_ANSWER || "adarsh";
 
         if (
-            answers[0]?.toLowerCase() === q1.toLowerCase() &&
             answers[1]?.toLowerCase() === q2.toLowerCase() &&
             answers[2]?.toLowerCase() === q3.toLowerCase()
         ) {
