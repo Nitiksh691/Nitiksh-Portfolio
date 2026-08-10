@@ -27,19 +27,19 @@ export async function POST(request: Request) {
     rateLimitMap.set(ip, rateData);
 
     try {
-        const { answers } = await request.json();
+        const body = await request.json();
+        const answers = Array.isArray(body?.answers) ? body.answers : [];
 
         // Validate answers against environment variables
-        
-        const q1 = process.env.ADMIN_Q1_ANSWER || "2025";
-        const q2 = process.env.ADMIN_Q2_ANSWER || "adarsh";
+        const q1 = (process.env.ADMIN_Q1_ANSWER || "2025").toString().trim().toLowerCase();
+        const q2 = (process.env.ADMIN_Q2_ANSWER || "adarsh").toString().trim().toLowerCase();
 
-        if (
-            answers[1]?.toLowerCase() === q1.toLowerCase() &&
-            answers[2]?.toLowerCase() === q2.toLowerCase()
-        ) {
+        const a1 = (answers[0] ?? "").toString().trim().toLowerCase();
+        const a2 = (answers[1] ?? "").toString().trim().toLowerCase();
+
+        if (a1 === q1 && a2 === q2) {
             // Success - set cookie
-            const cookieStore = await cookies();
+            const cookieStore = cookies();
             cookieStore.set("admin_session", "authenticated", {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
@@ -53,6 +53,8 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ error: "Incorrect answers. Access denied." }, { status: 401 });
     } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error("/api/admin/verify error:", error);
         return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     }
 }
