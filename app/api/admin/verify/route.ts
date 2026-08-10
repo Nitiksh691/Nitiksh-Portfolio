@@ -35,8 +35,8 @@ export async function POST(request: Request) {
         const q2 = process.env.ADMIN_Q2_ANSWER || "adarsh";
 
         if (
-            answers[1]?.toLowerCase() === q2.toLowerCase() &&
-            answers[2]?.toLowerCase() === q3.toLowerCase()
+            answers[1]?.toLowerCase() === q1.toLowerCase() &&
+            answers[2]?.toLowerCase() === q2.toLowerCase()
         ) {
             // Success - set cookie
             const cookieStore = await cookies();
