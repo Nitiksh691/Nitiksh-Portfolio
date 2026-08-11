@@ -55,7 +55,7 @@ export default function AdminChallenge() {
                             <input
                                 type="text"
                                 required
-                                className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900/5 transition-all"
+                                className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/5 transition-all"
                                 value={answers[0]}
                                 onChange={(e) => setAnswers([e.target.value, answers[1]])}
                             />
@@ -65,7 +65,7 @@ export default function AdminChallenge() {
                             <input
                                 type="password"
                                 required
-                                className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900/5 transition-all"
+                                className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/5 transition-all"
                                 value={answers[1]}
                                 onChange={(e) => setAnswers([answers[0], e.target.value])}
                             />
